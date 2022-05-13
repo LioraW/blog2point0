@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Button from '@mui/material/Button';
+import Create from './components/create'
+
+const buttonStyle = {
+  marginRight: '10px',
+  textDecoration: 'none',
+  margiLeft: 'auto'
+ }
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Here's a Blog 2
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p> more stuff</p>
+        <Create/>
       </header>
+       <div className='button'>
+         <Button style={buttonStyle} variant='contained' color='secondary'>
+          New Post
+      </Button>
+      </div>
+     
     </div>
   );
 }
