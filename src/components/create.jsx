@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import Paper from '@mui/material/Paper'
+import { blueGrey } from '@mui/material/colors'
 
 const superagent = require('superagent')
 
-const Post = () => {
+
+const Post = (props) => {
     const [title, setTitle] = useState(0)
     const [text, setText] = useState(0)
 
@@ -30,21 +33,22 @@ if (err) {
     console.error(err); 
     return 
 } 
-       console.log(res.body)
-        setTitle(res.body[4].title)
-        setText(res.body[4].text)
+    console.log(res.body)
+    setTitle(res.body[props.index].title)
+    setText(res.body[props.index].text)
     } ); 
 
-console.log(title)
-console.log(text)
     return (
         <>
-        <div>
+        <Paper style={{background:blueGrey[500], padding:20}}>
+            <div>
             Title: {title}
         </div>
         <div>
             Text: {text}
         </div>
+        </Paper>
+        
         </>
     )
 }
@@ -53,7 +57,7 @@ const Create = () => {
     return (
     <>
             <div className='App-content-words'>
-                <Post/>
+                <Post index={0}/>
             </div>
     
     </>
