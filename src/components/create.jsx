@@ -4,8 +4,7 @@ import { blueGrey } from '@mui/material/colors'
 
 const superagent = require('superagent')
 
-
-const Post = ()=> {
+const Post = () => {
 
     const [posts, setPosts] = useState([])
     
@@ -18,14 +17,11 @@ const Post = ()=> {
 
     }
 
-
     useEffect(() => {
         getPosts()  
         
-    })
-    // console.log(posts)
+    }, [ posts ])
 
- 
     return (
         <div> 
         <table>
@@ -33,17 +29,19 @@ const Post = ()=> {
                 {
                     posts.map(post => {
                         return (
-                                <tr key={post._id}>
-                                    <td>
-                                    <Paper style={{background:blueGrey[500], padding:20}}>
+                            <tr key={post._id}>
+                                <td>
+                                <Paper style={{background:blueGrey[500], padding:20}}>
+                                    <div>
                                         Title: {post.title}
-                                       
+                                    </div>
+                                    <div>
                                         Text: {post.text}
-                                    </Paper>
-                                        
-                                    </td>
-                                </tr>
-                            )
+                                    </div>
+                                </Paper>
+                                </td>
+                            </tr>
+                        )
                     }                
                 )
                 }
@@ -57,13 +55,10 @@ const Post = ()=> {
 }
 
 const Create = () => {
-    ///workaround will be to save a global variable with the number of posts, then do a for loop
     return (
     <>
             <div className='App-content-words'>
-                
-                <Post />
-                
+                <Post />             
             </div>
     
     </>

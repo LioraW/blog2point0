@@ -2,6 +2,7 @@ import './App.css';
 import Button from '@mui/material/Button';
 import Create from './components/create'
 import updatePost from './components/update'
+import {useEffect} from "react"
 
 const buttonStyle = {
   marginRight: '10px',
@@ -25,7 +26,7 @@ function App() {
             New Post
         </Button>
         <Button style={buttonStyle} variant='contained' color='secondary'
-            onClick={updatePost(2, {title:"chani", text: "rox"})}>
+            onClick={ async () => { await updatePost(2, {title:"chani", text: "rox"})} }>
             Update Post
         </Button>
       </div>
