@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper'
 import { blueGrey } from '@mui/material/colors'
+import Button from '@mui/material/Button';
+import updatePost from './update'
+
 
 const superagent = require('superagent')
+const buttonStyle = {
+    marginRight: '10px',
+    textDecoration: 'none',
+    margiLeft: 'auto'
+   }
 
 const Post = () => {
 
@@ -38,6 +46,10 @@ const Post = () => {
                                     <div>
                                         Text: {post.text}
                                     </div>
+                                    <Button style={buttonStyle} variant='contained' color='secondary'
+                                        onClick={ async () => { await updatePost(post._id, {title:"liora", text: "rox"})} }>
+                                        Update Post
+                                    </Button>
                                 </Paper>
                                 </td>
                             </tr>
