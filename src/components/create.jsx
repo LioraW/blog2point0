@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper'
 import { blueGrey } from '@mui/material/colors'
 import Button from '@mui/material/Button';
 import updatePost from './update'
+import deletePost from './deletePost';
 
 
 const superagent = require('superagent')
@@ -49,6 +50,10 @@ const Post = () => {
                                     <Button style={buttonStyle} variant='contained' color='secondary'
                                         onClick={ async () => { await updatePost(post._id, {title:"liora", text: "rox"})} }>
                                         Update Post
+                                    </Button>
+                                    <Button style={buttonStyle} variant='contained' color='secondary'
+                                        onClick={ async () => { await deletePost(post._id)} }>
+                                        Delete Post
                                     </Button>
                                 </Paper>
                                 </td>
