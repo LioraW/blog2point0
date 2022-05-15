@@ -1,63 +1,69 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper'
 import { blueGrey } from '@mui/material/colors'
 
 const superagent = require('superagent')
 
 
-const Post = (props) => {
-    const [title, setTitle] = useState(0)
-    const [text, setText] = useState(0)
+const Post = ()=> {
 
-    const url = 'http://localhost:3000/posts'
-    // const post = {
-    //     title: "blog post",
-    //     text: "new words"
-    // }
+    const [posts, setPosts] = useState([])
+    
+    const getPosts = async () => {
+    
+        const url = 'http://localhost:3000/posts'
+        const resp = await superagent.get(url)
 
-    // superagent
-    // .post(url)
-    // .send(post)
-    // .end((err, res) => {
-    //     if (err) {
-    //         console.log(err)
-    //         return
-    //     }
-    // })
+        setPosts(resp.body)
+
+    }
 
 
-superagent 
-.get(url) 
-.end((err, res) => { 
-if (err) { 
-    console.error(err); 
-    return 
-} 
-    console.log(res.body)
-    setTitle(res.body[props.index].title)
-    setText(res.body[props.index].text)
-    } ); 
-
-    return (
-        <>
-        <Paper style={{background:blueGrey[500], padding:20}}>
-            <div>
-            Title: {title}
-        </div>
-        <div>
-            Text: {text}
-        </div>
-        </Paper>
+    useEffect(() => {
+        getPosts()  
         
-        </>
+    })
+    // console.log(posts)
+
+ 
+    return (
+        <div> 
+        <table>
+            <tbody>
+                {
+                    posts.map(post => {
+                        return (
+                                <tr key={post._id}>
+                                    <td>
+                                    <Paper style={{background:blueGrey[500], padding:20}}>
+                                        Title: {post.title}
+                                       
+                                        Text: {post.text}
+                                    </Paper>
+                                        
+                                    </td>
+                                </tr>
+                            )
+                    }                
+                )
+                }
+            </tbody>
+        </table>      
+        </div>
+   
+        
     )
+    
 }
 
 const Create = () => {
+    ///workaround will be to save a global variable with the number of posts, then do a for loop
     return (
     <>
             <div className='App-content-words'>
-                <Post index={0}/>
+                
+                <Post />
+                
             </div>
     
     </>
