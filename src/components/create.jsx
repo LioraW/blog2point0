@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Paper from '@mui/material/Paper'
 import { blueGrey } from '@mui/material/colors'
 import Button from '@mui/material/Button';
-import updatePost from './update'
-import deletePost from './deletePost';
+import updatePost from '../api/update'
+import deletePost from '../api/deletePost';
+import '../App.css';
+
 
 
 const superagent = require('superagent')
@@ -16,7 +18,15 @@ const buttonStyle = {
 const Post = () => {
 
     const [posts, setPosts] = useState([])
-    
+    const [newTitle, setNewTitle] = useState("")
+    const [newText, setNewText] = useState("")
+
+    //for updating
+    const handleTitleChange = event => { setNewTitle(event.target.value) }
+    const handleTextChange = event => { setNewText(event.target.value) }
+
+
+    //get the posts
     const getPosts = async () => {
     
         const url = 'http://localhost:3000/posts'
@@ -27,14 +37,23 @@ const Post = () => {
     }
 
     useEffect(() => {
-        getPosts()  
-        
+        getPosts()     
     }, [ posts ])
 
     return (
         <div> 
         <table>
             <tbody>
+                <tr>
+                    <td>
+                        <div classname="instructions">
+                        Enter update title and text here, then click a post to update it with the new information:
+                        </div>
+                        <input type="text" value={newTitle} title="Enter a new title" placeholder="New Title" onChange={handleTitleChange}/>
+                        <input type="text" value={newText} title="Enter new text" placeholder="New Text" onChange={handleTextChange}/>
+                    
+                    </td>
+                </tr>
                 {
                     posts.map(post => {
                         return (
@@ -48,7 +67,7 @@ const Post = () => {
                                         Text: {post.text}
                                     </div>
                                     <Button style={buttonStyle} variant='contained' color='secondary'
-                                        onClick={ async () => { await updatePost(post._id, {title:"liora", text: "rox"})} }>
+                                        onClick={ async () => { await updatePost(post._id, {title: newTitle, text: newText})} }>
                                         Update Post
                                     </Button>
                                     <Button style={buttonStyle} variant='contained' color='secondary'
