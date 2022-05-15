@@ -2,6 +2,7 @@ import './App.css';
 import Button from '@mui/material/Button';
 import Create from './components/create'
 import updatePost from './components/update'
+import createPost from './components/createPost';
 
 const buttonStyle = {
   marginRight: '10px',
@@ -19,14 +20,10 @@ function App() {
         <Create/>
       </header>
        <div className='button'>
-         <Button style={buttonStyle} variant='contained' color='secondary'
-            >
+        <Button style={buttonStyle} variant='contained' color='secondary'
+            onClick={ async () => { await createPost({title:"cheeken", text: "rox"})} }>
             New Post
         </Button>
-        {/* <Button style={buttonStyle} variant='contained' color='secondary'
-            onClick={ async () => { await updatePost(2, {title:"liora", text: "rox"})} }>
-            Update Post
-        </Button> */}
       </div>
      
     </div>
