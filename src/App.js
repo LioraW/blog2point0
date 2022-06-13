@@ -1,5 +1,5 @@
 import './App.css';
-import Create from './components/create'
+import Posts from './components/Posts'
 import NewPost from './components/newPost';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <p>
           Here's a 2nd Blog
         </p>
-        <Create/>
+        <Posts/>
       </header>
        <div className='button'>
         <NewPost />

@@ -6,8 +6,6 @@ import updatePost from '../api/update'
 import deletePost from '../api/deletePost';
 import '../App.css';
 
-
-
 const superagent = require('superagent')
 const buttonStyle = {
     marginRight: '10px',
@@ -15,7 +13,7 @@ const buttonStyle = {
     margiLeft: 'auto'
    }
 
-const Post = () => {
+const Posts = () => {
 
     const [posts, setPosts] = useState([])
     const [newTitle, setNewTitle] = useState("")
@@ -46,7 +44,7 @@ const Post = () => {
             <tbody>
                 <tr>
                     <td>
-                        <div classname="instructions">
+                        <div className="instructions">
                         Enter update title and text here, then click a post to update it with the new information:
                         </div>
                         <input type="text" value={newTitle} title="Enter a new title" placeholder="New Title" onChange={handleTitleChange}/>
@@ -90,15 +88,5 @@ const Post = () => {
     
 }
 
-const Create = () => {
-    return (
-    <>
-            <div className='App-content-words'>
-                <Post />             
-            </div>
-    
-    </>
-    )
-}
 
-export default Create
+export default Posts
