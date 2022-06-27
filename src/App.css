@@ -14,6 +14,10 @@
 .instructions {
   font-size: 10px;
 }
+.edit-options {
+  display: flex;
+  justify-content: end;
+}
 
 .App-header {
   background-color: #282c34;
