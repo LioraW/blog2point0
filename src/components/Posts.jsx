@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
 import Paper from '@mui/material/Paper'
-import { blueGrey } from '@mui/material/colors'
+import { blueGrey, lightBlue } from '@mui/material/colors'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+
 import SaveIcon from '@mui/icons-material/Save';
 import Button from '@mui/material/Button';
 
@@ -32,7 +33,9 @@ const Posts = () => {
     const handleTitleChange = event => { setNewTitle(event.target.value) }
     const handleTextChange = event => { setNewText(event.target.value) }
 
-    
+    const editPost = async (id) => {
+        await  updatePost(id, { title: newTitle, text: newText }) 
+    }
 
 
     //get the posts
@@ -50,7 +53,7 @@ const Posts = () => {
     }, [posts])
 
     return (
-        <div>
+        <div className='App-body'>
             <table>
                 <tbody>
                     <tr>
@@ -68,21 +71,21 @@ const Posts = () => {
                             return (
                                 <tr key={post._id}>
                                     <td>
-                                        <Paper style={{ background: blueGrey[500], padding: 20 }}>
-                                            <div>
-                                                Title: {post.title}
+                                        <Paper elevation={10} style={{ background: lightBlue, padding: 20 }}>
+                                            <div className='post-title'>
+                                                {post.title}
                                             </div>
-                                            <div>
-                                                Text: {post.text}
+                                            <div className='post-text'>
+                                                {post.text}
                                             </div>
                                             
                                             <div className='edit-options'>
                                                 <IconButton aria-label="update"
-                                                    onClick={async () => { await  updatePost(post._id, { title: newTitle, text: newText }) }}>
+                                                    onClick={ async () => { editPost(post._id) } }>
                                                     <EditIcon />
                                                 </IconButton>
                                                 <IconButton aria-label="delete"
-                                                    onClick={async () => { await deletePost(post._id) }}>
+                                                    onClick={ async () => { await deletePost(post._id) }}>
                                                     <DeleteIcon />
                                                 </IconButton>
 
