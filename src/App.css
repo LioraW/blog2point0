@@ -37,8 +37,13 @@
 
 .App-body {
   font-size: calc(10px + 2vmin);
-  
+  width: 50vh;
 }
+
+.card {
+  min-width: 100 px;
+}
+
 
 .post-title {
   font-size: calc(10px + 2vmin);

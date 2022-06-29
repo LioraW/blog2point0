@@ -20,7 +20,7 @@ const PostCard = ( {id, post_title, post_text} ) => {
     const [newText, setNewText] = useState("")
     const [beingEdited, setBeingEdited] = useState(false)
 
-    const handleTitleChange = event => { setNewTitle(event.target.value); console.log(newTitle) }
+    const handleTitleChange = event => { setNewTitle(event.target.value) }
     const handleTextChange = event => { setNewText(event.target.value) }
 
     const saveUpdatedPost = async (id) => {
@@ -29,15 +29,15 @@ const PostCard = ( {id, post_title, post_text} ) => {
 
     return (
         <>
-            <Paper elevation={10} style={{ background: lightBlue, padding: 20 }}>
+            <Paper elevation={10} style={{ background: lightBlue, padding: 20 }} sx={{width: '100%'}} className='card'>
                 {
                     beingEdited ?
                         <div>
                             <div className='post-title'>
-                                <input type="text" defaultValue={post_title} title="Enter a new title" onChange={handleTitleChange} />
+                                <input type="text" defaultValue={post_title} value={newTitle} title="Enter a new title" onChange={handleTitleChange} />
                             </div>
                             <div className='post-text'>
-                                <input type="text" defaultValue={post_text} title="Enter new text" onChange={handleTextChange} />
+                                <input type="text" defaultValue={post_text} value={newText} title="Enter new text" onChange={handleTextChange} />
                             </div>
                         </div>
                         :
@@ -51,7 +51,6 @@ const PostCard = ( {id, post_title, post_text} ) => {
                         </div>
 
                 }
-
                 <div className='edit-options'>
                     {
                         beingEdited ?
@@ -70,12 +69,10 @@ const PostCard = ( {id, post_title, post_text} ) => {
                             </div>
 
                     }
-
                     <IconButton aria-label="delete"
                         onClick={async () => { await deletePost(id) }}>
                         <DeleteIcon />
                     </IconButton>
-
                 </div>
             </Paper>
         </>
