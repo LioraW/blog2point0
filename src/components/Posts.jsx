@@ -15,7 +15,7 @@ import '../App.css';
 const superagent = require('superagent')
 
 
-const PostCard = ( {id, post_title, post_text} ) => {
+const PostCard = ( {id, title, text, date} ) => {
     const [newTitle, setNewTitle] = useState("")
     const [newText, setNewText] = useState("")
     const [beingEdited, setBeingEdited] = useState(false)
@@ -27,26 +27,49 @@ const PostCard = ( {id, post_title, post_text} ) => {
         await updatePost(id, { title: newTitle, text: newText })
     }
 
+    const formatDate = (date) => {
+        const dateNumbers = date.split('T')[0].split('-')
+        const months = {
+            '01': 'Jan',
+            '02': 'Feb',
+            '03': 'Mar',
+            '04': 'Apr',
+            '05': 'May',
+            '06': 'Jun',
+            '07': 'Jul',
+            '08': 'Aug',
+            '09': 'Sep',
+            '10': 'Oct',
+            '11': 'Nov',
+            '12': 'Dec',
+        }
+        
+        return months[dateNumbers[1]] + " " + dateNumbers[2] + ", " + dateNumbers[0]
+    }
+
     return (
         <>
             <Paper elevation={10} style={{ background: lightBlue, padding: 20, width:'100vh'}} sx={{width: '100%'}} className='card'>
+                <div id='date'>
+                    {formatDate(date)}
+                </div>
                 {
                     beingEdited ?
                         <div>
                             <div className='post-title'>
-                                <input type="text" defaultValue={post_title} value={newTitle} title="Enter a new title" onChange={handleTitleChange} />
+                                <input type="text" defaultValue={title} value={newTitle} title="Enter a new title" onChange={handleTitleChange} />
                             </div>
                             <div className='post-text'>
-                                <input type="text" defaultValue={post_text} value={newText} title="Enter new text" onChange={handleTextChange} />
+                                <input type="text" defaultValue={text} value={newText} title="Enter new text" onChange={handleTextChange} />
                             </div>
                         </div>
                         :
                         <div>
                             <div className='post-title'>
-                                {post_title}
+                                {title}
                             </div>
                             <div className='post-text'>
-                                {post_text}
+                                {text}
                             </div>
                         </div>
 
@@ -91,7 +114,6 @@ const Posts = () => {
         const resp = await superagent.get(url)
 
         setPosts(resp.body)
-
     }
 
     useEffect(() => {
@@ -103,19 +125,12 @@ const Posts = () => {
         <div className='App-body'>
             <table>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div className="instructions">
-                                Here are a few thoughts of mine:
-                            </div>
-                        </td>
-                    </tr>
                     {
                         posts.map(post => {
                             return (
                                 <tr key={post._id}>
                                     <td>
-                                        <PostCard id={post._id} post_title={post.title} post_text={post.text}/>
+                                        <PostCard id={post._id} title={post.title} text={post.text} date={post.date}/>
                                     </td>
                                 </tr>
                             )
@@ -125,7 +140,6 @@ const Posts = () => {
                 </tbody>
             </table>
         </div>
-
 
     )
 

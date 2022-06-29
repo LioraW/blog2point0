@@ -10,11 +10,14 @@ function App() {
         <p>
           Here's a 2nd Blog
         </p>
-        <Posts/>
+        
       </header>
-       <div className='button'>
-        <NewPost />
-      </div>
+      <body>
+        <div className ='App-body'>
+          <NewPost />
+          <Posts/>
+        </div>
+      </body>
      
     </div>
   );
