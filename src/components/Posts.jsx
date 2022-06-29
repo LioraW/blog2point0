@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 import Paper from '@mui/material/Paper'
-import { blueGrey, lightBlue } from '@mui/material/colors'
+import { lightBlue } from '@mui/material/colors'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-
 import SaveIcon from '@mui/icons-material/Save';
-import Button from '@mui/material/Button';
+
 
 import updatePost from '../api/update'
 import deletePost from '../api/deletePost';
@@ -19,26 +18,27 @@ const superagent = require('superagent')
 const PostCard = ( {id, post_title, post_text} ) => {
     const [newTitle, setNewTitle] = useState("")
     const [newText, setNewText] = useState("")
-    
     const [beingEdited, setBeingEdited] = useState(false)
 
-    const handleTitleChange = event => { setNewTitle(event.target.value) }
+    const handleTitleChange = event => { setNewTitle(event.target.value); console.log(newTitle) }
     const handleTextChange = event => { setNewText(event.target.value) }
 
-    const editPost = async (id) => {
+    const saveUpdatedPost = async (id) => {
         await updatePost(id, { title: newTitle, text: newText })
     }
-
 
     return (
         <>
             <Paper elevation={10} style={{ background: lightBlue, padding: 20 }}>
-
                 {
                     beingEdited ?
                         <div>
-                            <input type="text" value={post_title} title="Enter a new title" placeholder={newTitle} onChange={handleTitleChange} />
-                            <input type="text" value={post_text} title="Enter new text" placeholder={newText} onChange={handleTextChange} />
+                            <div className='post-title'>
+                                <input type="text" defaultValue={post_title} title="Enter a new title" onChange={handleTitleChange} />
+                            </div>
+                            <div className='post-text'>
+                                <input type="text" defaultValue={post_text} title="Enter new text" onChange={handleTextChange} />
+                            </div>
                         </div>
                         :
                         <div>
@@ -57,12 +57,11 @@ const PostCard = ( {id, post_title, post_text} ) => {
                         beingEdited ?
                             <div>
                                 <IconButton aria-label="save"
-                                    onClick={async () => { editPost(id); setBeingEdited(false) }}>
+                                    onClick={async () => { saveUpdatedPost(id); setBeingEdited(false) }}>
                                     <SaveIcon />
                                 </IconButton>
                             </div>
                             :
-                            //updated button had onclick like onClick={async () => { editPost(post._id); setBeingEdited(true) }
                             <div>
                                 <IconButton aria-label="update"
                                     onClick={async () => { setBeingEdited(true) }}>
@@ -87,19 +86,6 @@ const PostCard = ( {id, post_title, post_text} ) => {
 const Posts = () => {
 
     const [posts, setPosts] = useState([])
-    const [beingEdited, setBeingEdited] = useState(false)
-
-    const [newTitle, setNewTitle] = useState("")
-    const [newText, setNewText] = useState("")
-
-    //for updating
-    const handleTitleChange = event => { setNewTitle(event.target.value) }
-    const handleTextChange = event => { setNewText(event.target.value) }
-
-    const editPost = async (id) => {
-        await updatePost(id, { title: newTitle, text: newText })
-    }
-
 
     //get the posts
     const getPosts = async () => {
@@ -123,11 +109,8 @@ const Posts = () => {
                     <tr>
                         <td>
                             <div className="instructions">
-                                Enter update title and text here, then click a post to update it with the new information:
+                                Here are a few thoughts of mine:
                             </div>
-                            <input type="text" value={newTitle} title="Enter a new title" placeholder="New Title" onChange={handleTitleChange} />
-                            <input type="text" value={newText} title="Enter new text" placeholder="New Text" onChange={handleTextChange} />
-
                         </td>
                     </tr>
                     {
@@ -135,7 +118,7 @@ const Posts = () => {
                             return (
                                 <tr key={post._id}>
                                     <td>
-                                        <PostCard id={post._id} post_title={post.title} post_text={post.text} editPost={editPost}/>
+                                        <PostCard id={post._id} post_title={post.title} post_text={post.text}/>
                                     </td>
                                 </tr>
                             )
