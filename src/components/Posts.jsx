@@ -29,7 +29,7 @@ const PostCard = ( {id, post_title, post_text} ) => {
 
     return (
         <>
-            <Paper elevation={10} style={{ background: lightBlue, padding: 20 }} sx={{width: '100%'}} className='card'>
+            <Paper elevation={10} style={{ background: lightBlue, padding: 20, width:'100vh'}} sx={{width: '100%'}} className='card'>
                 {
                     beingEdited ?
                         <div>
