@@ -14,26 +14,26 @@ class NavBar extends React.Component {
     render () {
         return (
             <>
-                <div className='nav-bar'>
-                    {/* <Link to='/'> */}
+                <nav className='nav-bar'>
+                    <Link to='/'>
                         <Button style={buttonStyle} >
                             Home
                         </Button>
-                    {/* </Link> */}
+                    </Link>
 
-                    {/* <Link to='/WeatherPage'> */}
+                    <Link to='/about'>
                         <Button style={buttonStyle} >
-                            Weather
+                            About
                         </Button>
-                    {/* </Link> */}
+                    </Link>
 
-                    {/* <Link to='/aboutmeira'> */}
+                    <Link to='/recipies'>
                         <Button style={buttonStyle} >
-                            About Meira
+                            Recipes
                         </Button>
-                    {/* </Link> */}
+                    </Link>
 
-                </div>
+                </nav>
                 
             </>
         )

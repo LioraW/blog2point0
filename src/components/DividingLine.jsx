@@ -2,7 +2,8 @@ const ColoredLine = ({ color }) => (
     <hr
         style={{
             color: color,
-            height: 0.5 
+            height: 0.5,
+            width: 100 + '%',
         }}
     />
 );

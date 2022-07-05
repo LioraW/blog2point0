@@ -8,8 +8,8 @@
   font-family: Arvo,serif;
 
 }
+
 .button {
-  
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -18,11 +18,13 @@
   float:left;
   margin: 20px;
 }
+
 .instructions {
   font-size: 20px;
   justify-content: flex-start;
   text-align: left;
 }
+
 .edit-options {
   display: flex;
   justify-content: end;
@@ -33,26 +35,28 @@
   display: flex;
   flex-direction: column;
   padding-left: 150px;
-  text-align: left;
   font-size: calc(10px + 4vmin);
   color: #5085A5;
   font-family: Arvo, serif;
   font-weight: 100;
-  
-
 }
+
 .App-title {
   float: left;
+  text-align: left;
   width: auto;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 .nav-bar {
-  float: left;
+  float: right;
+  text-align: right;
   width: auto;
-  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-right: 10 0px;
 
 }
+
 .App-body {
   background-color: white;
   min-height: 100vh;

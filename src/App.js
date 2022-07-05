@@ -1,29 +1,33 @@
 import './App.css';
-import Posts from './components/Posts'
-import NewPost from './components/newPost';
 import DividingLine from './components/DividingLine'
 import NavBar from './components/NavBar'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './containers/Home';
+import About from './containers/About'
+import Recipes from './containers/Recipes'
+
 
 function App() {
-
   return (
     <div className="App">
-      <header className="App-header">
-        <div className='App-title'>
-           Here's a 2nd Blog 
+      <BrowserRouter>
+        <header className="App-header">
+          <div className='App-title'>
+            Coding Between Carpools
+            <NavBar />
+          </div>
+        </header>
+        <div className='App-body'>
+          <DividingLine color="black" />
+          <Routes>
+            <Route element={<Home />} exact path='/' />
+            <Route element={<About />} exact path='/about/*' />
+            <Route element={<Recipes />} exact path='/recipes/*' />
+          </Routes>
         </div>
-     
-        <NavBar />
-      </header>
-      <body>
-        <DividingLine color="black" />
-        <div className ='App-body'>
-          <NewPost />
-          <Posts/>
-        </div>
-      </body>
-     
+      </BrowserRouter>
     </div>
+
   );
 }
 
