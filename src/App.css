@@ -1,7 +1,11 @@
+@font-face {
+  font-family: 'Arvo';
+  src: local('Arvo'), url(../fonts/Arvo/Arvo-Regular.ttf) format('truetype');
+}
+
 .App {
   text-align: center;
-  
-  font-family: Arvo,Georgia,Cambria,Times New Roman,Times,serif;
+  font-family: Arvo,serif;
 
 }
 .button {
@@ -28,16 +32,27 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* text-align: left; */
-  justify-content: flex-start;
+  padding-left: 150px;
+  text-align: left;
   font-size: calc(10px + 4vmin);
-  color: black;
-  font-family: Arvo,Georgia,Cambria,Times New Roman,Times,serif;
-  /* padding-left: 20vh; */
+  color: #5085A5;
+  font-family: Arvo, serif;
+  font-weight: 100;
+  
 
 }
+.App-title {
+  float: left;
+  width: auto;
+  padding-top: 20px;
+}
 
+.nav-bar {
+  float: left;
+  width: auto;
+  padding-top: 20px;
+
+}
 .App-body {
   background-color: white;
   min-height: 100vh;

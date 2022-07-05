@@ -15,8 +15,8 @@ const NewPost = () => {
 
     return (
         <div>
-                <input type="text" value={newTitle} title="Enter the title for the new post" placeholder="New Title" onChange={handleTitleChange} />
-                <input type="text"  value={newText} title="Enter the text for the new post" placeholder="New Text" onChange={handleTextChange} />
+            <input type="text" value={newTitle} title="Enter the title for the new post" placeholder="New Title" onChange={handleTitleChange} />
+            <input type="text"  value={newText} title="Enter the text for the new post" placeholder="New Text" onChange={handleTextChange} />
             
             <IconButton aria-label="Add"
                 onClick={async () => { await createPost({ title: newTitle, text: newText }) }}>
