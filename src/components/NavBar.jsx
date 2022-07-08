@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { grey } from '@mui/material/colors'
 import Button from '@mui/material/Button'
 import '../App.css'
 
@@ -27,9 +26,9 @@ class NavBar extends React.Component {
                         </Button>
                     </Link>
 
-                    <Link to='/recipies'>
+                    <Link to='/other'>
                         <Button style={buttonStyle} >
-                            Recipes
+                            Other Stuff
                         </Button>
                     </Link>
 

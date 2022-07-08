@@ -1,10 +1,7 @@
 import React from 'react'
 import NewPost from '../components/newPost'
-import Posts from '../components/Posts'
 
-
-
-const Recipes = () => {
+const Other = () => {
     return (
         <>
         <div>Hey, you are on Recipes</div>
@@ -14,4 +11,4 @@ const Recipes = () => {
     )
 }
 
-export default Recipes
+export default Other

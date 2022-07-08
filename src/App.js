@@ -4,7 +4,7 @@ import NavBar from './components/NavBar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './containers/Home';
 import About from './containers/About'
-import Recipes from './containers/Recipes'
+import Other from './containers/Other'
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <Routes>
             <Route element={<Home />} exact path='/' />
             <Route element={<About />} exact path='/about/*' />
-            <Route element={<Recipes />} exact path='/recipes/*' />
+            <Route element={<Other />} exact path='/other/*' />
           </Routes>
         </div>
       </BrowserRouter>
