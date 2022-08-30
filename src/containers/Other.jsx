@@ -1,11 +1,11 @@
 import React from 'react'
-import NewPost from '../components/newPost'
+import DadJokes from '../components/DadJokes'
 
 const Other = () => {
     return (
         <>
-        <div>Hey, you are on Recipes</div>
-            <NewPost/>
+        <div>Dad Jokes from the Dad Jokes API</div>
+            <DadJokes/>
 
         </>
     )
