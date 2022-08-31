@@ -14,7 +14,6 @@ const Posts = ({editable}) => {
 
         const url = 'http://localhost:3000/posts'
         const resp = await superagent.get(url)
-
         setPosts(resp.body)
     }
 
@@ -28,7 +27,7 @@ const Posts = ({editable}) => {
             <table>
                 <tbody>
                     {
-                        posts.map(post => {
+                        posts.slice(0).reverse().map(post => {
                             const formattedDate = formatDate(post.date)
                             return (
                                 <tr key={post._id}>
